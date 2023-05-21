@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.JdbcTypeCode;
 
+import java.sql.Types;
 import java.util.UUID;
 @Entity
 @Table(name="products")
@@ -14,6 +16,7 @@ import java.util.UUID;
 public class Product {
     @Id
     @GeneratedValue
+    @JdbcTypeCode(Types.VARCHAR)
     private UUID id;
     @Column(name = "name", length = 70, nullable = false)
     private String name;

@@ -8,6 +8,5 @@ import java.util.UUID;
 public interface CategoryService {
     Category getById(UUID id);
     List<Category> getAll();
-
     Category create(Category category);
 }
