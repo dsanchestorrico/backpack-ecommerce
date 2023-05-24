@@ -30,4 +30,14 @@ public class UserServiceImpl implements UserService{
     public List<User> getAll() {
         return userRepository.findAll();
     }
+
+    @Override
+    public User create(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public boolean existEmail(String email) {
+        return userRepository.findByEmail(email).isPresent();
+    }
 }
