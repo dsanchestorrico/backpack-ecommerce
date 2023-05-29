@@ -11,4 +11,7 @@ public interface UserService {
     List<User> getAll();
     User create(User user);
     boolean existEmail(String email);
+
+    User getByEmail(String email);
+
 }

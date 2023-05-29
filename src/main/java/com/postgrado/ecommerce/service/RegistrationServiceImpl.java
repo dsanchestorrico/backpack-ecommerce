@@ -6,6 +6,7 @@ import com.postgrado.ecommerce.entity.User;
 import com.postgrado.ecommerce.exception.EmailAlreadyTaken;
 import com.postgrado.ecommerce.repository.ConfirmationTokenRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ public class RegistrationServiceImpl implements RegistrationService{
     private UserService userService;
     private RoleService roleService;
     private ConfirmationTokenService confirmationTokenService;
+    private PasswordEncoder passwordEncoder;
     @Override
     public String register(RegistrationRequest dto) {
         boolean existUser = userService.existEmail(dto.getEmail());
@@ -28,8 +30,8 @@ public class RegistrationServiceImpl implements RegistrationService{
         user.setFirstName(dto.getFirstName());
         user.setLastName(dto.getLastName());
         user.setAddress(dto.getAddress());
-        //TODO: password encryptation
-        user.setPassword(dto.getPassword());
+        String encodedPassword = passwordEncoder.encode(dto.getPassword());
+        user.setPassword(encodedPassword);
         user.setRole(roleService.getByName("USER"));
 
         userService.create(user);
