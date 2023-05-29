@@ -16,27 +16,17 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-  private UserDetailService userDetailService;
+
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
     http.csrf().disable(); //no autenticacion basica
     http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-    http.authenticationProvider(authenticationProvider());
     http.authorizeHttpRequests()
-        .requestMatchers("/register").permitAll()
+        .requestMatchers("/auth/**").permitAll()
         .anyRequest().authenticated();
+    http.httpBasic();
     return http.build();
   }
-  @Bean
-  public PasswordEncoder passwordEncoder(){
-    return new BCryptPasswordEncoder();
-  }
-  @Bean
-  public AuthenticationProvider authenticationProvider(){
-    DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-    provider.setUserDetailsService(userDetailService);
-    provider.setPasswordEncoder(passwordEncoder());
-    return provider;
-  }
+
 }
 

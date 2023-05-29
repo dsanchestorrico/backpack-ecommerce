@@ -45,4 +45,10 @@ public class UserServiceImpl implements UserService{
     public User getByEmail(String email) {
         return userRepository.findByEmail(email).orElseThrow(()->new EntityNotFoundException((String.format("User with email %s not found", email))));
     }
+
+    @Override
+    public void enableUser(User user) {
+        user.setEnable(true);
+        userRepository.save(user);
+    }
 }

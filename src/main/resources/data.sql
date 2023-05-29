@@ -9,8 +9,8 @@ INSERT IGNORE INTO roles (id, name, description) VALUES ('a1b6d042-1be4-4907-981
 INSERT IGNORE INTO roles (id, name, description) VALUES ('94dcfd3f-2367-4ab4-bd81-4b6764513dc5', 'ADMIN', 'Role admin');
 
 -- Default users --
-INSERT IGNORE INTO users (id, first_name,last_name,email,password, enable, address,role_id) VALUES ('f54b1fdd-387f-4ad4-9e48-e209a1a563ea', 'Johan', 'Sanchez', 'johan@gmail.com', '12345678', true, 'cbba', '94dcfd3f-2367-4ab4-bd81-4b6764513dc5');
-INSERT IGNORE INTO users (id, first_name,last_name,email,password, enable, address,role_id) VALUES ('735db20f-4d88-49ac-8706-e62d5b5aff6b', 'Maddie', 'Sanchez', 'maddie@gmail.com', '12345678', true, 'cbba', 'a1b6d042-1be4-4907-9814-daf110a473f9');
+INSERT IGNORE INTO users (id, first_name,last_name,email,password, enable, address,role_id) VALUES ('f54b1fdd-387f-4ad4-9e48-e209a1a563ea', 'Johan', 'Sanchez', 'johan@gmail.com', '$2a$12$0Du7B3UZ50AKEXxJYTrFRuwN6k60CaaAjocRS5xymlBcSC7seoIte', true, 'cbba', '94dcfd3f-2367-4ab4-bd81-4b6764513dc5');
+INSERT IGNORE INTO users (id, first_name,last_name,email,password, enable, address,role_id) VALUES ('735db20f-4d88-49ac-8706-e62d5b5aff6b', 'Maddie', 'Sanchez', 'maddie@gmail.com', '$2a$12$0Du7B3UZ50AKEXxJYTrFRuwN6k60CaaAjocRS5xymlBcSC7seoIte', true, 'cbba', 'a1b6d042-1be4-4907-9814-daf110a473f9');
 
 
 -- Default products --
