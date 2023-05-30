@@ -25,6 +25,11 @@ public class ProductController {
         Product productSaved = productService.create(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(productSaved);
     }
+    @PutMapping("/{id}")
+    public ResponseEntity<Product>update(@PathVariable UUID id, @RequestBody ProductDto dto){
+        Product productUpdated = productService.update(id, dto);
+        return ResponseEntity.status(HttpStatus.OK).body(productUpdated);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Product>getById(@PathVariable UUID id){
@@ -56,6 +61,12 @@ public class ProductController {
         Sort sort = Sort.by(Sort.Direction.fromString(sortOrder), sortField);
         Pageable pageable = PageRequest.of(page, size, sort);
         Page<Product> productPage = productService.getFilteredProducts(minPrice, maxPrice, pageable);
+        return ResponseEntity.status(HttpStatus.OK).body(productPage);
+    }
+    @GetMapping("/category/{id}")
+    public ResponseEntity<Page<Product>> getProductsByCategoryId(@PathVariable("id") UUID categoryId, @RequestParam int page , @RequestParam int size){
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> productPage = productService.getProductsByCategoryId(categoryId, pageable);
         return ResponseEntity.status(HttpStatus.OK).body(productPage);
     }
 }

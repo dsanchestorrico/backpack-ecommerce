@@ -10,6 +10,7 @@ import java.util.UUID;
 @Data
 @NoArgsConstructor
 public class ProductDto {
+    private UUID id;
     private String name;
     private String description;
     private String imageUrl;

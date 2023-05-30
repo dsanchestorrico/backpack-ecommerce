@@ -31,6 +31,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public Product update(UUID id, ProductDto dto) {
+        Category category = categoryService.getById(dto.getCategoryId());
+        Product product = productMapper.fromDto(dto);
+        product.setId(id);
+        product.setCategory(category);
+        return productRepository.save(product);
+    }
+
+    @Override
     public Product getById(UUID id) {
         return productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product", id));
     }
@@ -38,6 +47,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Page<Product> getProducts(Pageable pageable) {
         return productRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Product> getProductsByCategoryId(UUID categoryId, Pageable pageable) {
+        return productRepository.findByCategoryId(categoryId,pageable);
     }
 
     @Override

@@ -28,7 +28,7 @@ public class RegistrationServiceImpl implements RegistrationService{
     public String register(RegistrationRequest dto) {
         boolean existUser = userService.existEmail(dto.getEmail());
         if(existUser){
-            throw new EmailAlreadyTaken("Email already taken");
+            throw new EmailAlreadyTaken(dto.getEmail());
         }
 
         User user = new User();
