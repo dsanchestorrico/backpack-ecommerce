@@ -5,8 +5,8 @@ import lombok.*;
 @Getter
 @Setter
 @Builder
-public class ErrorResponse {
-    private int code;
+public class CustomErrorResponse {
+    private int status;
     private String error;
     private String message;
 }

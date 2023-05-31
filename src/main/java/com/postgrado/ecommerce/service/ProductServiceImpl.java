@@ -33,8 +33,8 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product update(UUID id, ProductDto dto) {
         Category category = categoryService.getById(dto.getCategoryId());
-        Product product = productMapper.fromDto(dto);
-        product.setId(id);
+        Product originalProduct = productRepository.findById(id).orElseThrow(()-> new EntityNotFoundException("Product", id));
+        Product product = productMapper.updateFromDto(dto, originalProduct);
         product.setCategory(category);
         return productRepository.save(product);
     }

@@ -5,6 +5,7 @@ import com.postgrado.ecommerce.dto.AuthenticationResponse;
 import com.postgrado.ecommerce.dto.RegistrationRequest;
 import com.postgrado.ecommerce.service.AuthenticationService;
 import com.postgrado.ecommerce.service.RegistrationService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ public class AuthController {
     private AuthenticationService authenticationService;
 
     @PostMapping
-    public ResponseEntity<String>register(@RequestBody RegistrationRequest dto){
+    public ResponseEntity<String>register(@Valid @RequestBody RegistrationRequest dto){
         String message = registrationService.register(dto);
         return ResponseEntity.status(HttpStatus.CREATED).body(message);
     }
